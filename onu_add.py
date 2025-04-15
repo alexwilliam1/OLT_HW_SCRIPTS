@@ -5,19 +5,27 @@ from tqdm import tqdm
 
 olt = Olt_pm()
 
-slot = 3
-pon = 3
+slot = 1
+pon = 14
 vlan = 3000
 
 onts = [    
     {"sn": "", "id": 30, "desc": "MIGRACAO_CTO"},
     {"sn": "", "id": 31, "desc": "MIGRACAO_CTO"},
     {"sn": "", "id": 32, "desc": "MIGRACAO_CTO"},
-    {"sn": "", "id": 25, "desc": "MIGRACAO_CTO"},
-    {"sn": "", "id": 26, "desc": "MIGRACAO_CTO"},
-    {"sn": "", "id": 27, "desc": "MIGRACAO_CTO"},
-    {"sn": "", "id": 28, "desc": "MIGRACAO_CTO"},
-    {"sn": "", "id": 29, "desc": "MIGRACAO_CTO"},
+    {"sn": "", "id": 33, "desc": "MIGRACAO_CTO"},
+    {"sn": "", "id": 34, "desc": "MIGRACAO_CTO"},
+    {"sn": "", "id": 35, "desc": "MIGRACAO_CTO"},
+    {"sn": "", "id": 36, "desc": "MIGRACAO_CTO"},
+    {"sn": "", "id": 37, "desc": "MIGRACAO_CTO"},
+    # {"sn": "", "id": 21, "desc": "MIGRACAO_CTO"},
+    # {"sn": "", "id": 22, "desc": "MIGRACAO_CTO"},
+    # {"sn": "", "id": 23, "desc": "MIGRACAO_CTO"},
+    # {"sn": "", "id": 24, "desc": "MIGRACAO_CTO"},
+    # {"sn": "", "id": 25, "desc": "MIGRACAO_CTO"},
+    # {"sn": "", "id": 29, "desc": "MIGRACAO_CTO"},
+    # {"sn": "", "id": 29, "desc": "MIGRACAO_CTO"},
+    # {"sn": "", "id": 29, "desc": "MIGRACAO_CTO"},
 ]
 
 try:
