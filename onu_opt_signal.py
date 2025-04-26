@@ -5,6 +5,7 @@ from olt_info import Olt_pm
 olt = Olt_pm()
 slot = 1
 pon = 12
+id = 0
 
 def main():
     ssh = conssh(olt)
@@ -27,7 +28,7 @@ def commands(ssh):
     shell.send("enable\n")
     shell.send("config\n")
     shell.send(f"interface gpon 0/{slot}\n")
-    shell.send(f"display ont optical-info {pon} 54\n")
+    shell.send(f"display ont optical-info {pon} {id}\n")
     return shell
 
 def printOutput(shell):

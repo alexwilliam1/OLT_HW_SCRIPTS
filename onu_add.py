@@ -8,24 +8,25 @@ olt = Olt_pm()
 slot = 1
 pon = 15
 vlan = 3000
+id = 10
 
 onts = [    
-    {"sn": "", "id": 7, "desc": "MIGRACAO_CTO"}, # 1
-    {"sn": "", "id": 8, "desc": "MIGRACAO_CTO"}, # 2
-    {"sn": "", "id": 9, "desc": "MIGRACAO_CTO"}, # 3
-    {"sn": "", "id": 10, "desc": "MIGRACAO_CTO"}, # 4
-    {"sn": "", "id": 11, "desc": "MIGRACAO_CTO"}, # 5
-    {"sn": "", "id": 12, "desc": "MIGRACAO_CTO"}, # 6 
-    # {"sn": "", "id": 31, "desc": "MIGRACAO_CTO"}, # 7
-    # {"sn": "", "id": 32, "desc": "MIGRACAO_CTO"}, # 8
-    # {"sn": "", "id": 33, "desc": "MIGRACAO_CTO"}, # 9
-    # {"sn": "", "id": 34, "desc": "MIGRACAO_CTO"}, # 10
-    # {"sn": "", "id": 23, "desc": "MIGRACAO_CTO"}, # 11
-    # {"sn": "", "id": 24, "desc": "MIGRACAO_CTO"}, # 12
-    # {"sn": "", "id": 25, "desc": "MIGRACAO_CTO"}, # 13
-    # {"sn": "", "id": 29, "desc": "MIGRACAO_CTO"}, # 14
-    # {"sn": "", "id": 29, "desc": "MIGRACAO_CTO"}, # 15
-    # {"sn": "", "id": 29, "desc": "MIGRACAO_CTO"}, # 16
+    {"sn": "", "id": id, "desc": "MIGRACAO_CTO"}, # 1
+    {"sn": "", "id": id+1, "desc": "MIGRACAO_CTO"}, # 2
+    {"sn": "", "id": id+2, "desc": "MIGRACAO_CTO"}, # 3
+    {"sn": "", "id": id+3, "desc": "MIGRACAO_CTO"}, # 4
+    {"sn": "", "id": id+4, "desc": "MIGRACAO_CTO"}, # 5
+    {"sn": "", "id": id+5, "desc": "MIGRACAO_CTO"}, # 6 
+    # {"sn": "", "id": id+6, "desc": "MIGRACAO_CTO"}, # 7
+    # {"sn": "", "id": id+7, "desc": "MIGRACAO_CTO"}, # 8
+    # {"sn": "", "id": id+8, "desc": "MIGRACAO_CTO"}, # 9
+    # {"sn": "", "id": id+9, "desc": "MIGRACAO_CTO"}, # 10
+    # {"sn": "", "id": id+10, "desc": "MIGRACAO_CTO"}, # 11
+    # {"sn": "", "id": id+11, "desc": "MIGRACAO_CTO"}, # 12
+    # {"sn": "", "id": id+12, "desc": "MIGRACAO_CTO"}, # 13
+    # {"sn": "", "id": id+13, "desc": "MIGRACAO_CTO"}, # 14
+    # {"sn": "", "id": id+14, "desc": "MIGRACAO_CTO"}, # 15
+    # {"sn": "", "id": id+15, "desc": "MIGRACAO_CTO"}, # 16
 ]
 
 try:
@@ -33,7 +34,7 @@ try:
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     ssh.connect(olt.ip_host(), username=olt.user_login(), password=olt.passwd_login())
     shell = ssh.invoke_shell()
-    print("CONEXÃO COM A OLT ESTABELECIDA COM SUCESSO \n")
+    print("CONEXÃO ESTABELECIDA COM SUCESSO \n")
 except Exception as e:
     print(f"Erro ao conectar a OLT: {e}")
     exit(1)
@@ -74,4 +75,4 @@ for _ in tqdm(range(120), desc="SALVANDO AS ALTERAÇÕES NA OLT"):
 output = shell.recv(65535).decode('utf-8')
 print(output)
 ssh.close()
-print("PROCESSO FINALIZADO. \n CONEXÃO COM A OLT FECHADA.")
+print("PROCESSO FINALIZADO. \nCONEXÃO COM A OLT FECHADA.")
