@@ -10,7 +10,7 @@ pon = @
 vlan = 3000
 id = @
 
-# CONFERIR O SLOT, A PON E idANTES DE EXECUTAR
+# CONFERIR O SLOT, A PON E ID ANTES DE EXECUTAR
 onts = [    
     {"sn": "", "id": id, "desc": "MIGRACAO_CTO"}, # 1
     {"sn": "", "id": id+1, "desc": "MIGRACAO_CTO"}, # 2
