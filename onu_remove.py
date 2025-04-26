@@ -1,14 +1,15 @@
 import paramiko
 import time
 from olt_info import Olt_pm
+from tqdm import tqdm
 
 olt = Olt_pm()
 frame = 0          
-slot = 3             
-pon = 9                    
+slot = 1             
+pon = 15                    
 
 # Lista de IDs das ONUs a serem removidas
-ont_ids_to_remove = [1, 2, 3]  # Substitua pelos IDs reais que deseja remover
+ont_ids_to_remove = [54, 51, 50, 53, 52, 48, 49]  # Substitua pelos IDs reais que deseja remover
 
 # Conectar à OLT via SSH
 try:
@@ -33,8 +34,9 @@ for ont_id in ont_ids_to_remove:
 # Sair do modo GPON e salvar configuração
 shell.send("quit\n")
 shell.send("save\n")
-shell.send("Y\n")  # Confirmação do save, se necessário
-time.sleep(2)  # Aguarda o save completar
+shell.send("\n")  # Confirmação do save, se necessário
+for _ in tqdm(range(120), desc="SALVANDO AS ALTERAÇÕES NA OLT"):
+        time.sleep(1)  # Aguarda o save completar
 
 # Capturar e exibir a saída para verificação
 output = shell.recv(65535).decode('utf-8')
