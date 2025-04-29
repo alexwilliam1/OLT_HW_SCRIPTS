@@ -5,10 +5,10 @@ from tqdm import tqdm
 
 olt = Olt_pm()
 
-slot = @
-pon = @
+slot = _
+pon = _
 vlan = 3000
-id = @
+id = _
 
 # CONFERIR O SLOT, A PON E ID ANTES DE EXECUTAR
 onts = [    
@@ -19,9 +19,9 @@ onts = [
     {"sn": "", "id": id+4, "desc": "MIGRACAO_CTO"}, # 5
     {"sn": "", "id": id+5, "desc": "MIGRACAO_CTO"}, # 6 
     {"sn": "", "id": id+6, "desc": "MIGRACAO_CTO"}, # 7
-    {"sn": "", "id": id+7, "desc": "MIGRACAO_CTO"}, # 8
-    {"sn": "", "id": id+8, "desc": "MIGRACAO_CTO"}, # 9
-    {"sn": "", "id": id+9, "desc": "MIGRACAO_CTO"}, # 10
+    # {"sn": "", "id": id+7, "desc": "MIGRACAO_CTO"}, # 8
+    # {"sn": "", "id": id+8, "desc": "MIGRACAO_CTO"}, # 9
+    # {"sn": "", "id": id+9, "desc": "MIGRACAO_CTO"}, # 10
     # {"sn": "", "id": id+10, "desc": "MIGRACAO_CTO"}, # 11
     # {"sn": "", "id": id+11, "desc": "MIGRACAO_CTO"}, # 12
     # {"sn": "", "id": id+12, "desc": "MIGRACAO_CTO"}, # 13
