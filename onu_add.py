@@ -5,10 +5,10 @@ from tqdm import tqdm
 
 olt = Olt_pm()
 
-slot = 
-pon = 
+slot = _
+pon = _
 vlan = 3000
-id = 
+id = _
 
 # CONFERIR O SLOT, A PON E ID ANTES DE EXECUTAR
 onts = [    
