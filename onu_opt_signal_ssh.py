@@ -1,11 +1,11 @@
 import paramiko
 import time
-from olt_info import Olt_pm
+from olt_info import Olt_bl
 
-olt = Olt_pm()
+olt = Olt_bl()
 slot = 1
-pon = 12
-id = 0
+pon = 4
+id = 93
 
 def main():
     ssh = conssh(olt)

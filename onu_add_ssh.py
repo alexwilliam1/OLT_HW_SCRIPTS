@@ -1,16 +1,16 @@
 import paramiko
 import time
-from olt_info import Olt_pm
+from olt_info import Olt_bl
 from tqdm import tqdm
 
-olt = Olt_pm()
+olt = Olt_bl() # OLT BELEM
 
 slot = _
 pon = _
-vlan = 3000
+vlan = 3002 # VLAN BELEM
 id = _
 
-# CONFERIR O SLOT, A PON E ID ANTES DE EXECUTAR
+# CONFERIR O SCRIPT É O CERTO PARA A OLT, O SLOT,A PON E O ID INICIAL ANTES DE EXECUTAR
 onts = [    
     {"sn": "", "id": id, "desc": "MIGRACAO_CTO"}, # 1
     {"sn": "", "id": id+1, "desc": "MIGRACAO_CTO"}, # 2
@@ -48,7 +48,7 @@ shell.send(f"interface gpon 0/{slot}\n")
 # Adicionar 
 for ont in onts:
     print(f"ONT ADD - SN: {ont['sn']}")
-    shell.send(f"ont add {pon} {ont['id']} sn-auth {ont['sn']} omci ont-lineprofile-id 1 ont-srvprofile-id 1 desc \"{ont['desc']}\"\n")
+    shell.send(f"ont add {pon} {ont['id']} sn-auth {ont['sn']} omci ont-lineprofile-id {vlan} ont-srvprofile-id {vlan} desc \"{ont['desc']}\"\n")
     shell.send("\n")
     
 print("\n")
@@ -63,7 +63,7 @@ print("\n")
 # Criar service-ports
 for ont in onts:
     print(f"SERVICE-PONT VLAN - SN: {ont['sn']}")
-    shell.send(f"service-port vlan {vlan} gpon 0/{slot}/{pon} ont {ont['id']} gemport 3 multi-service user-vlan {vlan} tag-transform translate\n")
+    shell.send(f"service-port vlan {vlan} gpon 0/{slot}/{pon} ont {ont['id']} gemport 2 multi-service user-vlan {vlan} tag-transform translate\n")
     shell.send("\n")  
 
 print("\n")
