@@ -1,9 +1,9 @@
 import paramiko
 import time
-from olt_info import Olt_bl
+from olt_info import Olt_ma
 from tqdm import tqdm
 
-olt = Olt_bl() # OLT BELEM
+olt = Olt_ma() # OLT MONTE ALGRE
 
 slot = _
 pon = _
