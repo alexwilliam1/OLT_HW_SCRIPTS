@@ -5,9 +5,9 @@ from olt_info import Olt_pm
 
 olt = Olt_pm()
 frame = 0
-slot = 3
-pon = 10
-ont_id = 1  # ID da ONU específica
+slot = 1
+pon = 3
+ont_id = 52  # ID da ONU específica
 
 try:
     ssh = paramiko.SSHClient()
