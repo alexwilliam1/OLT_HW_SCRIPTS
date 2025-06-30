@@ -1,15 +1,15 @@
 import paramiko
 import time
-from olt_info import Olt_pm
+from olt_info import Olt_ma
 from tqdm import tqdm
 
-olt = Olt_pm()
+olt = Olt_ma()
 frame = 0          
 slot = 1             
-pon = 15                    
+pon = 0                    
 
 # Lista de IDs das ONUs a serem removidas
-ont_ids_to_remove = [54, 51, 50, 53, 52, 48, 49]  # Substitua pelos IDs reais que deseja remover
+ont_ids_to_remove = [54, 51, 50, 53, 52, 48, 49]  
 
 # Conectar à OLT via SSH
 try:
@@ -46,4 +46,4 @@ print(output)
 # Fechar a conexão
 ssh.close()
 
-print(f"Remoção das ONUs {ont_ids_to_remove} na PON 0/{slot}/{pon} concluída.")
+print(f"Remoção das ONUs {ont_ids_to_remove} - 0/{slot}/{pon} concluída.")
