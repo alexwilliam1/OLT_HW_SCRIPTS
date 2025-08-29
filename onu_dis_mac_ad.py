@@ -7,7 +7,7 @@ olt = Olt_pm()
 frame = 0
 slot = 1
 pon = 3
-ont_id = 52  # ID da ONU específica
+ont_id = 52  # ONT ID
 
 try:
     ssh = paramiko.SSHClient()
@@ -26,7 +26,7 @@ time.sleep(2)
 output = shell.recv(65535).decode('utf-8')
 ssh.close()
 
-# Extrair os MACs com regex
+# EXTRACT MAC ADDRESSES USING REGEX
 macs = re.findall(r"([0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2})", output)
 
 if macs:

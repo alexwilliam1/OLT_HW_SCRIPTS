@@ -26,7 +26,7 @@ shell.send("enable\n")
 shell.send("config\n")
 shell.send(f"interface gpon 0/{slot}\n")
 
-# EDITAR DESCRIÇÃO DA ONU 
+# EDIT ONU DESCRIPTION
 # ont modify pon id desc "desc"
 for ont in onts:
     print(f"EDIT DESC ONT: {slot}/{ont['pon']}/{ont['id']}->{ont['desc']}")
@@ -35,12 +35,10 @@ for ont in onts:
 
 shell.send("quit\n")
 
-# print("\n")
-# print("SALVANDO AS ALTERAÇÕES NA OLT")
 shell.send("save\n")
-shell.send("\n")  # Responde "Yes" à confirmação, se necessário
+shell.send("\n") # CONFIRM THE SAVE COMMAND, IF NECESSARY
 for _ in tqdm(range(120), desc="SALVANDO AS ALTERAÇÕES NA OLT"):
-        time.sleep(1)  # Aguarda o save completar
+        time.sleep(1)  # WAIT SAVE
 output = shell.recv(65535).decode('utf-8')
 print(output)
 ssh.close()

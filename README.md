@@ -1,2 +1,2 @@
 # olt_py_codes
- Python scripts for consult, authorize and remove ONTs in Huawei OLT
+PYTHON SCRIPTS FOR CONSULT, ADD, EDIT DESCRIPTION AND REMOVE ONT'S IN A HUAWEI OLT

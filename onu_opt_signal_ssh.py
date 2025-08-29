@@ -32,7 +32,7 @@ def commands(ssh):
     return shell
 
 def printOutput(shell):
-    time.sleep(5)  # Aguarda o save completar
+    time.sleep(5)  
     output = shell.recv(65535).decode('utf-8')
     print(output)
 

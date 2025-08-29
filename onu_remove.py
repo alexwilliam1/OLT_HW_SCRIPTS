@@ -8,10 +8,10 @@ frame = 0
 slot = 1             
 pon = 0                    
 
-# Lista de IDs das ONUs a serem removidas
+# ONT IDS LIST
 ont_ids_to_remove = [54, 51, 50, 53, 52, 48, 49]  
 
-# Conectar à OLT via SSH
+# SSH CONNECTION
 try:
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -20,30 +20,28 @@ try:
 except Exception as e:
     print(f"Erro ao conectar a OLT: {e}")
     exit(1)
-    
-# Enviar comandos para entrar no modo GPON
+
+# ENTER GPON INTERFACE
 shell.send("enable\n")
 shell.send("config\n")
 shell.send(f"interface gpon {frame}/{slot}\n")
 
-# Remover cada ONU da lista
 for ont_id in ont_ids_to_remove:
     shell.send(f"ont delete {pon} {ont_id}\n")
-    time.sleep(0.5)  # Pequena pausa entre comandos para evitar sobrecarga
+    time.sleep(0.5)  # PAUSE BETWEEN COMMANDS TO AVOID OVERLOAD
 
-# Sair do modo GPON e salvar configuração
+# EXIT CONFG MODE
 shell.send("quit\n")
 shell.send("save\n")
-shell.send("\n")  # Confirmação do save, se necessário
+shell.send("\n")  # CONFIRM THE SAVE COMMAND, IF NECESSARY
 for _ in tqdm(range(120), desc="SALVANDO AS ALTERAÇÕES NA OLT"):
-        time.sleep(1)  # Aguarda o save completar
+        time.sleep(1)  # WAIT SAVING
 
-# Capturar e exibir a saída para verificação
+
 output = shell.recv(65535).decode('utf-8')
 print("Saída da OLT:")
 print(output)
 
-# Fechar a conexão
 ssh.close()
 
 print(f"Remoção das ONUs {ont_ids_to_remove} - 0/{slot}/{pon} concluída.")

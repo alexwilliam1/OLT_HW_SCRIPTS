@@ -21,7 +21,7 @@ shell.send("config\n")
 # shell.send(f"display ont info {pon} all\n")
 shell.send(f"display ont info by-sn 5A544547C4FFD014 \n")
 
-time.sleep(5)  # Aguarda o save completar
+time.sleep(5)  # WAIT SAVE
 output = shell.recv(65535).decode('utf-8')
 print(output)
 ssh.close()

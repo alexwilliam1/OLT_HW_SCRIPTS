@@ -9,22 +9,22 @@ vlan = 3000
 id = 10
 
 onts = [    
-    {"sn": "", "id": id, "desc": "MIGRACAO_CTO"}, # 1
-    {"sn": "", "id": id+1, "desc": "MIGRACAO_CTO"}, # 2
-    {"sn": "", "id": id+2, "desc": "MIGRACAO_CTO"}, # 3
-    {"sn": "", "id": id+3, "desc": "MIGRACAO_CTO"}, # 4
-    {"sn": "", "id": id+4, "desc": "MIGRACAO_CTO"}, # 5
-    {"sn": "", "id": id+5, "desc": "MIGRACAO_CTO"}, # 6 
-    # {"sn": "", "id": id+6, "desc": "MIGRACAO_CTO"}, # 7
-    # {"sn": "", "id": id+7, "desc": "MIGRACAO_CTO"}, # 8
-    # {"sn": "", "id": id+8, "desc": "MIGRACAO_CTO"}, # 9
-    # {"sn": "", "id": id+9, "desc": "MIGRACAO_CTO"}, # 10
-    # {"sn": "", "id": id+10, "desc": "MIGRACAO_CTO"}, # 11
-    # {"sn": "", "id": id+11, "desc": "MIGRACAO_CTO"}, # 12
-    # {"sn": "", "id": id+12, "desc": "MIGRACAO_CTO"}, # 13
-    # {"sn": "", "id": id+13, "desc": "MIGRACAO_CTO"}, # 14
-    # {"sn": "", "id": id+14, "desc": "MIGRACAO_CTO"}, # 15
-    # {"sn": "", "id": id+15, "desc": "MIGRACAO_CTO"}, # 16
+    {"sn": "", "id": id, "desc": "TESTS"}, # 1
+    {"sn": "", "id": id+1, "desc": "TESTS"}, # 2
+    {"sn": "", "id": id+2, "desc": "TESTS"}, # 3
+    {"sn": "", "id": id+3, "desc": "TESTS"}, # 4
+    {"sn": "", "id": id+4, "desc": "TESTS"}, # 5
+    {"sn": "", "id": id+5, "desc": "TESTS"}, # 6 
+    # {"sn": "", "id": id+6, "desc": "TESTS"}, # 7
+    # {"sn": "", "id": id+7, "desc": "TESTS"}, # 8
+    # {"sn": "", "id": id+8, "desc": "TESTS"}, # 9
+    # {"sn": "", "id": id+9, "desc": "TESTS"}, # 10
+    # {"sn": "", "id": id+10, "desc": "TESTS"}, # 11
+    # {"sn": "", "id": id+11, "desc": "TESTS"}, # 12
+    # {"sn": "", "id": id+12, "desc": "TESTS"}, # 13
+    # {"sn": "", "id": id+13, "desc": "TESTS"}, # 14
+    # {"sn": "", "id": id+14, "desc": "TESTS"}, # 15
+    # {"sn": "", "id": id+15, "desc": "TESTS"}, # 16
 ]
 
 def main():
