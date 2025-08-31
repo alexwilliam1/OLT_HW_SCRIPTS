@@ -1,15 +1,15 @@
 import paramiko
 import time
-from olt_info import Olt_ma
+from olt_info import Olt
 from tqdm import tqdm
 
-olt = Olt_ma()
+olt = Olt()
 frame = 0          
-slot = 1             
-pon = 0                    
+slot = 0             
+pon = 2                    
 
 # ONT IDS LIST
-ont_ids_to_remove = [54, 51, 50, 53, 52, 48, 49]  
+ont_ids_to_remove = [19, 8, 9, 4, 5, 6, 7, 0, 1, 2, 3, 24, 21, 20, 23, 22, 18, 14, 15, 16, 17, 10, 11, 12, 13]  
 
 # SSH CONNECTION
 try:
@@ -24,6 +24,11 @@ except Exception as e:
 # ENTER GPON INTERFACE
 shell.send("enable\n")
 shell.send("config\n")
+
+for ont_id in ont_ids_to_remove:
+    shell.send(f"undo service-port port {frame}/{slot}/{pon} ont {ont_id}\n")
+    time.sleep(0.5)
+
 shell.send(f"interface gpon {frame}/{slot}\n")
 
 for ont_id in ont_ids_to_remove:
@@ -44,4 +49,4 @@ print(output)
 
 ssh.close()
 
-print(f"Remoção das ONUs {ont_ids_to_remove} - 0/{slot}/{pon} concluída.")
+print(f"Remoção das ONUs {ont_ids_to_remove} - {frame}/{slot}/{pon} concluída.")
