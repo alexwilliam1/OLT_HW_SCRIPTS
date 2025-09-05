@@ -4,8 +4,8 @@ from olt_info import Olt
 
 olt = Olt()
 slot = 2
-pon = 7
-onu_id = 27
+pon = 6
+onu_id = 2
  
 try:
     ssh = paramiko.SSHClient()
