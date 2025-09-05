@@ -1,10 +1,11 @@
 import paramiko
 import time
-from olt_info import Olt_ma
+from olt_info import Olt
 
-olt = Olt_ma()
+olt = Olt()
 slot = 1
-pon = 3
+pon = 11
+onu = 38
  
 try:
     ssh = paramiko.SSHClient()
@@ -19,9 +20,9 @@ shell.send("enable\n")
 shell.send("config\n")
 # shell.send(f"interface gpon 0/{slot}\n")
 # shell.send(f"display ont info {pon} all\n")
-shell.send(f"display ont info by-sn 5A544547C4FFD014 \n")
+shell.send(f"display ont info by-sn 53554D43B2AAAB24 \n")
 
-time.sleep(5)  # WAIT SAVE
+time.sleep(5)
 output = shell.recv(65535).decode('utf-8')
 print(output)
 ssh.close()
