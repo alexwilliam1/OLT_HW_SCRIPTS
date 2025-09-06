@@ -1,14 +1,15 @@
 import paramiko #pip install paramiko
 import time
-from olt_info import Olt_pm
+from olt_info import Olt
 from tqdm import tqdm #pip install tqdm
 
-olt = Olt_pm() 
+olt = Olt() 
 
-slot = 3
+slot = 2
+# pon = 10
 
-onts = [    
-    {"pon": 10, "id": 2, "desc": "desc"},
+onts = [
+{"pon":1, "id": 27, "desc": "desc"},
 ]
 
 try:
@@ -31,14 +32,14 @@ shell.send(f"interface gpon 0/{slot}\n")
 for ont in onts:
     print(f"EDIT DESC ONT: {slot}/{ont['pon']}/{ont['id']}->{ont['desc']}")
     shell.send(f"ont modify {ont['pon']} {ont['id']} desc \"{ont['desc']}\"\n")
-    shell.send("\n")
+    # shell.send("\n")
 
 shell.send("quit\n")
 
-shell.send("save\n")
-shell.send("\n") # CONFIRM THE SAVE COMMAND, IF NECESSARY
-for _ in tqdm(range(120), desc="SALVANDO AS ALTERAÇÕES NA OLT"):
-        time.sleep(1)  # WAIT SAVE
+# shell.send("save\n")
+# shell.send("\n") # CONFIRM THE SAVE COMMAND, IF NECESSARY
+for _ in tqdm(range(40), desc="WAIT..."):
+        time.sleep(1)  # WAIT EXECUTION
 output = shell.recv(65535).decode('utf-8')
 print(output)
 ssh.close()
