@@ -3,8 +3,7 @@ import time
 from olt_info import Olt
 from tqdm import tqdm
 
-olt = Olt()
-frame = 0          
+olt = Olt()          
 slot = 0             
 pon = 2                    
 
@@ -26,10 +25,10 @@ shell.send("enable\n")
 shell.send("config\n")
 
 for ont_id in ont_ids_to_remove:
-    shell.send(f"undo service-port port {frame}/{slot}/{pon} ont {ont_id}\n")
+    shell.send(f"undo service-port port 0/{slot}/{pon} ont {ont_id}\n")
     time.sleep(0.5)
 
-shell.send(f"interface gpon {frame}/{slot}\n")
+shell.send(f"interface gpon 0/{slot}\n")
 
 for ont_id in ont_ids_to_remove:
     shell.send(f"ont delete {pon} {ont_id}\n")
@@ -49,4 +48,4 @@ print(output)
 
 ssh.close()
 
-print(f"Remoção das ONUs {ont_ids_to_remove} - {frame}/{slot}/{pon} concluída.")
+print(f"Remoção das ONUs {ont_ids_to_remove} - 0/{slot}/{pon} concluída.")

@@ -1,14 +1,20 @@
 import paramiko
 import time
-from olt_info import Olt_ma
+from olt_info import Olt
 from tqdm import tqdm
 
-olt = Olt_ma() 
+olt = Olt() 
+
+# OLT GB
+#   "serviceprofile": "100",
+#   "lineprofile": "100",
+#   "gemport": "100"
 
 slot = _
 pon = _
 vlan = 100 # VLAN PPPOE DA OLT
-id = _
+id = _ # INITIAL ID
+gemport = 100
 
 # BEFORE EXECUTE: CHECK OLT, SLOT, PON AND INITIAL ID
 onts = [    
@@ -63,7 +69,7 @@ print("\n")
 # CREATE SERVICE-PORT
 for ont in onts:
     print(f"SERVICE-PONT VLAN - SN: {ont['sn']}")
-    shell.send(f"service-port vlan {vlan} gpon 0/{slot}/{pon} ont {ont['id']} gemport 2 multi-service user-vlan {vlan} tag-transform translate\n")
+    shell.send(f"service-port vlan {vlan} gpon 0/{slot}/{pon} ont {ont['id']} gemport {gemport} multi-service user-vlan {vlan} tag-transform translate\n")
     shell.send("\n")  
 
 print("\n")
