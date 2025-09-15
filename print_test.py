@@ -1,7 +1,7 @@
-from olt_info import Olt_pm
+from olt_info import Olt
 from tqdm import tqdm
 
-olt = Olt_pm()
+olt = Olt()
 
 slot = 1
 pon = 15
