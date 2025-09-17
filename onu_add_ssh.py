@@ -10,8 +10,8 @@ olt = Olt()
 #   "lineprofile": "100",
 #   "gemport": "100"
 
-slot = 0
-pon = 1
+slot = 
+pon = 
 vlan = 100 # VLAN PPPOE DA OLT
 id = 0 # INITIAL ID
 gemport = 100
@@ -20,13 +20,24 @@ gemport = 100
 onts = [    
     {"sn": "", "id": id, "desc": "MIGRATION"}, # 1
     {"sn": "", "id": id+1, "desc": "MIGRATION"}, # 2
-    {"sn": "", "id": id+2, "desc": "MIGRATION"}, # 3
+    {"sn": "", "id": id+2, "desc": "MIGRATION"}, # 3 
     {"sn": "", "id": id+3, "desc": "MIGRATION"}, # 4
     {"sn": "", "id": id+4, "desc": "MIGRATION"}, # 5
     {"sn": "", "id": id+5, "desc": "MIGRATION"}, # 6 
     {"sn": "", "id": id+6, "desc": "MIGRATION"}, # 7
     {"sn": "", "id": id+7, "desc": "MIGRATION"}, # 8
-    
+    {"sn": "", "id": id+8, "desc": "MIGRATION"}, # 1
+    {"sn": "", "id": id+9, "desc": "MIGRATION"}, # 2
+    {"sn": "", "id": id+10, "desc": "MIGRATION"}, # 3
+    {"sn": "", "id": id+11, "desc": "MIGRATION"}, # 4
+    {"sn": "", "id": id+12, "desc": "MIGRATION"}, # 5
+    {"sn": "", "id": id+13, "desc": "MIGRATION"}, # 6 
+    {"sn": "", "id": id+14, "desc": "MIGRATION"}, # 7
+    {"sn": "", "id": id+15, "desc": "MIGRATION"}, # 8
+    {"sn": "", "id": id+16, "desc": "MIGRATION"}, # 1
+    # {"sn": "", "id": id+17, "desc": "MIGRATION"}, # 3
+    # {"sn": "", "id": id+18, "desc": "MIGRATION"}, # 4
+    # {"sn": "", "id": id+19, "desc": "MIGRATION"}, # 5
  ]
 
 try:
