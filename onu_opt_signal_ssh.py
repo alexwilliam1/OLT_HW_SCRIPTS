@@ -4,8 +4,8 @@ from olt_info import Olt
 
 olt = Olt()
 slot = 1
-pon = 2
-id = 19
+pon = 0
+id = 98
 
 def main():
     ssh = conssh(olt)
@@ -25,6 +25,7 @@ def conssh(olt):
     
 def commands(ssh):
     shell = ssh.invoke_shell()
+    shell.send(" \n")
     shell.send("enable\n")
     shell.send("config\n")
     shell.send(f"interface gpon 0/{slot}\n")
