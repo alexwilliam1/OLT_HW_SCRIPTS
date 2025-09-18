@@ -1,13 +1,12 @@
 import paramiko
 import time
 import re
-from olt_info import Olt_pm
+from olt_info import Olt
 
-olt = Olt_pm()
-frame = 0
+olt = Olt()
 slot = 1
 pon = 3
-ont_id = 52  # ONT ID
+ont_id = 0  # ONT ID
 
 try:
     ssh = paramiko.SSHClient()
@@ -19,7 +18,7 @@ except Exception as e:
     exit(1)
 
 shell.send("enable\n")
-shell.send(f"display mac-address ont {frame}/{slot}/{pon} {ont_id}\n")
+shell.send(f"display mac-address port 0/{slot}/{pon} ont {ont_id}\n")
 shell.send("\n")
 time.sleep(2)
 
@@ -30,7 +29,7 @@ ssh.close()
 macs = re.findall(r"([0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2})", output)
 
 if macs:
-    print(f"MACs associados à ONU {ont_id} na PON {frame}/{slot}/{pon}:")
+    print(f"MACs associados à ONU {ont_id} na PON 0/{slot}/{pon}:")
     for mac in macs:
         print(mac)
 else:
