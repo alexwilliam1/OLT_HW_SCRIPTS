@@ -4,11 +4,11 @@ from olt_info import Olt
 from tqdm import tqdm
 
 olt = Olt()          
-slot = 0             
-pon = 4                  
+slot = 1           
+pon = 8                
 
 # ONT IDS LIST
-ont_ids_to_remove = []  
+ont_ids_to_remove = [41, 37, 60, 3, 53, 33, 54, 28, 8, 26, 39, 44, 66, 35, 62, 68, 18, 14, 38, 46, 22, 23, 25]  
 
 # SSH CONNECTION
 try:
