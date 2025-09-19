@@ -5,11 +5,11 @@ from tqdm import tqdm #pip install tqdm
 
 olt = Olt() 
 
-slot = 2
-# pon = 10
+slot = 1
+pon = 5
 
 onts = [
-{"pon":1, "id": 27, "desc": "desc"},
+{"id": 17, "desc": ""},
 ]
 
 try:
@@ -23,22 +23,28 @@ except Exception as e:
     exit(1)
 
 print(f"ENTRANDO NA INTERFACE 0/{slot} \n")
+shell.send(" \n")
+time.sleep(0.5)
 shell.send("enable\n")
+time.sleep(0.5)
 shell.send("config\n")
+time.sleep(0.5)
 shell.send(f"interface gpon 0/{slot}\n")
+time.sleep(0.5)
 
 # EDIT ONU DESCRIPTION
 # ont modify pon id desc "desc"
 for ont in onts:
-    print(f"EDIT DESC ONT: {slot}/{ont['pon']}/{ont['id']}->{ont['desc']}")
-    shell.send(f"ont modify {ont['pon']} {ont['id']} desc \"{ont['desc']}\"\n")
+    print(f"EDIT DESC ONT: {slot}/{pon}/{ont['id']}->{ont['desc']}")
+    shell.send(f"ont modify {pon} {ont['id']} desc \"{ont['desc']}\"\n")
+    time.sleep(0.5)
     # shell.send("\n")
 
 shell.send("quit\n")
 
 # shell.send("save\n")
 # shell.send("\n") # CONFIRM THE SAVE COMMAND, IF NECESSARY
-for _ in tqdm(range(40), desc="WAIT..."):
+for _ in tqdm(range(50), desc="WAIT..."):
         time.sleep(1)  # WAIT EXECUTION
 output = shell.recv(65535).decode('utf-8')
 print(output)
