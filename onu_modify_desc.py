@@ -5,12 +5,13 @@ from tqdm import tqdm #pip install tqdm
 
 olt = Olt() 
 
-slot = 1
-pon = 5
+slot = _
+pon = _
 
 onts = [
-{"id": 17, "desc": ""},
+{"id": 2, "desc": ""},
 ]
+
 
 try:
     ssh = paramiko.SSHClient()
@@ -42,8 +43,8 @@ for ont in onts:
 
 shell.send("quit\n")
 
-# shell.send("save\n")
-# shell.send("\n") # CONFIRM THE SAVE COMMAND, IF NECESSARY
+shell.send("save\n")
+shell.send("\n") # CONFIRM THE SAVE COMMAND, IF NECESSARY
 for _ in tqdm(range(50), desc="WAIT..."):
         time.sleep(1)  # WAIT EXECUTION
 output = shell.recv(65535).decode('utf-8')
