@@ -5,13 +5,13 @@ from tqdm import tqdm #pip install tqdm
 
 olt = Olt() 
 
+olt_name = olt.olt_name()
 slot = _
 pon = _
 
 onts = [
-{"id": 2, "desc": ""},
+{"id": 0, "desc": "desc"},
 ]
-
 
 try:
     ssh = paramiko.SSHClient()
@@ -23,7 +23,7 @@ except Exception as e:
     print(f"Erro ao conectar a OLT: {e}")
     exit(1)
 
-print(f"ENTRANDO NA INTERFACE 0/{slot} \n")
+print(f"{olt_name} - SLOT 0/{slot} PON {pon} \n")
 shell.send(" \n")
 time.sleep(0.5)
 shell.send("enable\n")
