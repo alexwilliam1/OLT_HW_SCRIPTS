@@ -5,16 +5,11 @@ from tqdm import tqdm
 
 olt = Olt()
 
-# OLT GB
-#   "serviceprofile": "100",
-#   "lineprofile": "100",
-#   "gemport": "100"
-
-slot = 1
-pon = 5
-vlan = 100 # VLAN PPPOE DA OLT
-id = 1 # INITIAL ID
-gemport = 100
+slot = _
+pon = _
+vlan = _ # VLAN PPPOE DA OLT
+id = _ # INITIAL ID
+gemport = _
 
 # BEFORE EXECUTE: CHECK OLT, SLOT, PON AND INITIAL ID
 onts = [    

@@ -2,9 +2,9 @@ from olt_info import Olt
 from olt_ssh import connect, enter_config, recv_output, disconnect
 
 olt = Olt()
-slot = 1
-pon = 0
-id = 98
+slot = _
+pon = _
+id = _
 
 def main():
     ssh, shell = connect(olt)

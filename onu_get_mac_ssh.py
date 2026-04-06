@@ -3,9 +3,9 @@ from olt_info import Olt
 from olt_ssh import connect, recv_output, disconnect
 
 olt = Olt()
-slot = 2
-pon = 4
-ont_id = 38  # ONT ID
+slot = _
+pon = _
+ont_id = _  # ONT ID
 
 ssh, shell = connect(olt)
 shell.send("enable\n")
