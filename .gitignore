@@ -1,3 +1,6 @@
+*.json
+*.sql
 .env
-.sql
+
+
 __pycache__

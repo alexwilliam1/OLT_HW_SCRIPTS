@@ -1,9 +1,9 @@
-import paramiko
 import time
 from olt_info import Olt
+from olt_ssh import connect, enter_config, disconnect
 from tqdm import tqdm
 
-olt = Olt() 
+olt = Olt()
 
 # OLT GB
 #   "serviceprofile": "100",
@@ -18,51 +18,37 @@ gemport = 100
 
 # BEFORE EXECUTE: CHECK OLT, SLOT, PON AND INITIAL ID
 onts = [    
-    {"sn": "", "id": id, "desc": "MIGRATION"}, # 1
-    {"sn": "", "id": id+1, "desc": "MIGRATION"}, # 2
-    {"sn": "", "id": id+2, "desc": "MIGRATION"}, # 3 
-    {"sn": "", "id": id+3, "desc": "MIGRATION"}, # 4
-    {"sn": "", "id": id+4, "desc": "MIGRATION"}, # 5
-    {"sn": "", "id": id+5, "desc": "MIGRATION"}, # 6 
-    {"sn": "", "id": id+6, "desc": "MIGRATION"}, # 7
-    {"sn": "", "id": id+7, "desc": "MIGRATION"}, # 8
-    {"sn": "", "id": id+8, "desc": "MIGRATION"}, # 1
-    {"sn": "", "id": id+9, "desc": "MIGRATION"}, # 2
-    {"sn": "", "id": id+10, "desc": "MIGRATION"}, # 3
-    {"sn": "", "id": id+11, "desc": "MIGRATION"}, # 4
-    {"sn": "", "id": id+12, "desc": "MIGRATION"}, # 5
-    {"sn": "", "id": id+13, "desc": "MIGRATION"}, # 6 
-    {"sn": "", "id": id+14, "desc": "MIGRATION"}, # 7
-    {"sn": "", "id": id+15, "desc": "MIGRATION"}, # 8
-    {"sn": "", "id": id+16, "desc": "MIGRATION"}, # 1
-    {"sn": "", "id": id+17, "desc": "MIGRATION"}, # 3
-    {"sn": "", "id": id+18, "desc": "MIGRATION"}, # 4
-    {"sn": "", "id": id+19, "desc": "MIGRATION"}, # 5
-    {"sn": "", "id": id+20, "desc": "MIGRATION"}, # 5
-    {"sn": "", "id": id+21, "desc": "MIGRATION"}, # 5
-    {"sn": "", "id": id+22, "desc": "MIGRATION"}, # 5
+    # {"sn": "", "id": id, "desc": "MIGRATION"}, # 1
+    # {"sn": "", "id": id+1, "desc": "MIGRATION"}, # 2
+    # {"sn": "", "id": id+2, "desc": "MIGRATION"}, # 3 
+    # {"sn": "", "id": id+3, "desc": "MIGRATION"}, # 4
+    # {"sn": "", "id": id+4, "desc": "MIGRATION"}, # 5
+    # {"sn": "", "id": id+5, "desc": "MIGRATION"}, # 6 
+    # {"sn": "", "id": id+6, "desc": "MIGRATION"}, # 7
+    # {"sn": "", "id": id+7, "desc": "MIGRATION"}, # 8
+    # {"sn": "", "id": id+8, "desc": "MIGRATION"}, # 1
+    # {"sn": "", "id": id+9, "desc": "MIGRATION"}, # 2
+    # {"sn": "", "id": id+10, "desc": "MIGRATION"}, # 3
+    # {"sn": "", "id": id+11, "desc": "MIGRATION"}, # 4
+    # {"sn": "", "id": id+12, "desc": "MIGRATION"}, # 5
+    # {"sn": "", "id": id+13, "desc": "MIGRATION"}, # 6 
+    # {"sn": "", "id": id+14, "desc": "MIGRATION"}, # 7
+    # {"sn": "", "id": id+15, "desc": "MIGRATION"}, # 8
+    # {"sn": "", "id": id+16, "desc": "MIGRATION"}, # 1
+    # {"sn": "", "id": id+17, "desc": "MIGRATION"}, # 3
+    # {"sn": "", "id": id+18, "desc": "MIGRATION"}, # 4
+    # {"sn": "", "id": id+19, "desc": "MIGRATION"}, # 5
+    # {"sn": "", "id": id+20, "desc": "MIGRATION"}, # 5
+    # {"sn": "", "id": id+21, "desc": "MIGRATION"}, # 5
+    # {"sn": "", "id": id+22, "desc": "MIGRATION"}, # 5
     # {"sn": "", "id": id+23, "desc": "MIGRATION"}, # 5
     # {"sn": "", "id": id+24, "desc": "MIGRATION"}, # 5
  ]
 
-try:
-    ssh = paramiko.SSHClient()
-    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh.connect(olt.ip_host(), username=olt.user_login(), password=olt.passwd_login())
-    shell = ssh.invoke_shell()
-    print("CONEXÃO ESTABELECIDA COM SUCESSO \n")
-except Exception as e:
-    print(f"Erro ao conectar a OLT: {e}")
-    exit(1)
-
-time.sleep(0.5)
+ssh, shell = connect(olt)
+print("CONEXÃO ESTABELECIDA COM SUCESSO \n")
 print(f"ENTRANDO NA INTERFACE 0/{slot} \n")
-shell.send("enable\n")
-time.sleep(0.5)
-shell.send("config\n")
-time.sleep(0.5)
-shell.send(f"interface gpon 0/{slot}\n")
-time.sleep(0.5)
+enter_config(shell, slot=slot)
 
 # ADD 
 for ont in onts:
@@ -90,11 +76,5 @@ for ont in onts:
 
 print("\n")
 # SAVE CONFIGS
-# shell.send("save\n")
-# shell.send("\n")  # CONFIRME THE SAVE COMMAND, IF NECESSARY
-for _ in tqdm(range(120), desc="SALVANDO AS ALTERAÇÕES NA OLT"):
-        time.sleep(1)  # WAIT SAVE COMPLETE
-output = shell.recv(65535).decode('utf-8')
-print(output)
-ssh.close()
-print("PROCESSO FINALIZADO. \nCONEXÃO COM A OLT FECHADA.")
+save_config(shell, show_progress=True)
+disconnect(ssh)

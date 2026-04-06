@@ -1,29 +1,18 @@
-import paramiko
-import time
 import re
 from olt_info import Olt
+from olt_ssh import connect, recv_output, disconnect
 
 olt = Olt()
-slot = 1
-pon = 3
-ont_id = 0  # ONT ID
+slot = 2
+pon = 4
+ont_id = 38  # ONT ID
 
-try:
-    ssh = paramiko.SSHClient()
-    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh.connect(olt.ip_host(), username=olt.user_login(), password=olt.passwd_login())
-    shell = ssh.invoke_shell()
-except Exception as e:
-    print(f"Erro ao conectar a OLT: {e}")
-    exit(1)
-
+ssh, shell = connect(olt)
 shell.send("enable\n")
 shell.send(f"display mac-address port 0/{slot}/{pon} ont {ont_id}\n")
 shell.send("\n")
-time.sleep(2)
-
-output = shell.recv(65535).decode('utf-8')
-ssh.close()
+output = recv_output(shell, delay=2)
+disconnect(ssh, msg=False)
 
 # EXTRACT MAC ADDRESSES USING REGEX
 macs = re.findall(r"([0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2})", output)

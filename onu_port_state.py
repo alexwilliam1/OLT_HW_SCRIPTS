@@ -1,27 +1,13 @@
-import paramiko
-import time
 from olt_info import Olt
+from olt_ssh import connect, enter_config, recv_output, disconnect
 
 olt = Olt()
 slot = 1
 pon = 0
 onu_id = 0
- 
-try:
-    ssh = paramiko.SSHClient()
-    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh.connect(olt.ip_host(), username=olt.user_login(), password=olt.passwd_login())
-    shell = ssh.invoke_shell()
-except Exception as e:
-    print(f"Erro ao conectar a OLT: {e}")
-    exit(1)
 
-shell.send("enable\n")
-shell.send("config\n")
-shell.send(f"interface gpon 0/{slot}\n")
+ssh, shell = connect(olt)
+enter_config(shell, slot=slot)
 shell.send(f"display ont port state {pon} {onu_id} eth-port all \n")
-
-time.sleep(5)
-output = shell.recv(65535).decode('utf-8')
-print(output)
-ssh.close()
+print(recv_output(shell))
+disconnect(ssh)
