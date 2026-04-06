@@ -31,8 +31,6 @@ onts_to_modify = [
 
 
 class ModifyOnt:
-    """Modify ONU descriptions via Telnet with Netmiko."""
-
     def __init__(self):
         olt = Olt()
         self.conn = ConnectHandler(
@@ -69,8 +67,6 @@ class ModifyOnt:
 
 
 class AddOnt:
-    """Add ONUs with native-vlan and service-port config via Netmiko."""
-
     def __init__(self):
         olt = Olt()
         self.conn = ConnectHandler(
@@ -194,7 +190,7 @@ def main():
     # RemoveOnt().run().finish()
     
     # MODIFY onts
-    ModifyOnt().run().finish()
+    # ModifyOnt().run().finish()
 
 
 if __name__ == '__main__':
