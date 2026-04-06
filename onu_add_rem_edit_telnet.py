@@ -4,13 +4,13 @@ from olt_info import Olt
 
 # --- CONFIG ---
 protocol = 'telnet'  # 'ssh' ou 'telnet'
-port = 23341         # porta telnet
-slot = 1             # slot GPON
-pon = 11              # porta PON
-vlan = 1600          # VLAN PPPoE da OLT
-id = 0              # ID inicial
-gemport = 1          # Gemport
-line_srv = 20        # Line/Srv profile
+port = _         # porta telnet
+slot = _             # slot GPON
+pon = _              # porta PON
+vlan = _          # VLAN PPPoE da OLT
+id = _              # ID inicial
+gemport = _          # Gemport
+line_srv = _        # Line/Srv profile
 # --------------
 
 # ONTS TO ADD (fill SNs before running)
